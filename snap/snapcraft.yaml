@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Zygmunt Krynicki
+name: test-snapd-posix-mq
+base: core24
+version: "0.9"
+summary: Snap for testing the posix-mq snap interface
+description: |
+    The posix-mq snap interface allows access to POSIX message queue interface as
+    described by the mq_overview(7) manual page. The snap contains a number of
+    applications that all call into the mqctl binary, each with a different set
+    of permissions resulting from connected snap interface plugs.
+license: Apache-2.0
+grade: stable
+confinement: strict
+
+apps:
+    mqctl:
+        command: /usr/bin/mqctl
+        plugs:
+            - posix-mq
+        slots: [] # Empty list
+    superpower-mqctl:
+        # This application exists so that we can scope slots to it, without affecting the mqctl app.
+        command: /usr/bin/mqctl
+        slots:
+            - can-create
+            - can-delete
+            - can-open
+            - can-read
+            - can-write
+
+plugs:
+    posix-mq:
+        label: Connect any of the can-{create,delete,open,read,write} slots to gain permissions
+slots:
+    can-create:
+        interface: posix-mq
+        path: /test
+        label: Grants ability to create POSIX message queue /test
+        permissions:
+            - create
+    can-delete:
+        interface: posix-mq
+        path: /test
+        label: Grants ability to delete POSIX message queue /test
+        permissions:
+            - delete
+    can-open:
+        interface: posix-mq
+        path: /test
+        label: Grants ability to open POSIX message queue /test
+        permissions:
+            - open
+    can-read:
+        interface: posix-mq
+        label: Grants ability to receive messages from POSIX message queue /test
+        path: /test
+        permissions:
+            - read
+    can-write:
+        interface: posix-mq
+        label: Grants ability to send messages to POSIX message queue /test
+        path: /test
+        permissions:
+            - write
+    # TODO: can-getattr
+    # TODO: can-setattr
+
+parts:
+    mqctl:
+        plugin: make
+        make-parameters:
+            - prefix=/usr
+        source: .

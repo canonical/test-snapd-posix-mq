@@ -1,0 +1,4 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: test-snapd-posix-mq
+Upstream-Contact: Zygmunt Krynicki <me@zygoon.pl>
+Source: https://github.com/canonical/test-snapd-posix-mq/
