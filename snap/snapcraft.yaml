@@ -30,36 +30,36 @@ apps:
             - can-write
 
 plugs:
+    # Connect any of the can-{create,delete,open,read,write} slots to gain permissions
     posix-mq:
-        label: Connect any of the can-{create,delete,open,read,write} slots to gain permissions
 slots:
     can-create:
+        # Grants ability to create POSIX message queue /test
         interface: posix-mq
         path: /test
-        label: Grants ability to create POSIX message queue /test
         permissions:
             - create
     can-delete:
+        # Grants ability to delete POSIX message queue /test
         interface: posix-mq
         path: /test
-        label: Grants ability to delete POSIX message queue /test
         permissions:
             - delete
     can-open:
+        # Grants ability to open POSIX message queue /test
         interface: posix-mq
         path: /test
-        label: Grants ability to open POSIX message queue /test
         permissions:
             - open
     can-read:
+        # Grants ability to receive messages from POSIX message queue /test
         interface: posix-mq
-        label: Grants ability to receive messages from POSIX message queue /test
         path: /test
         permissions:
             - read
     can-write:
+        # Grants ability to send messages to POSIX message queue /test
         interface: posix-mq
-        label: Grants ability to send messages to POSIX message queue /test
         path: /test
         permissions:
             - write
