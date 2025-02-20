@@ -33,6 +33,7 @@ apps:
 plugs:
     # Connect any of the can-{create,delete,open,read,write} slots to gain permissions
     posix-mq:
+        interface: posix-mq
 slots:
     can-create:
         # Grants ability to create POSIX message queue /test
