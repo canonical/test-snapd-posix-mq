@@ -91,7 +91,7 @@ parts:
             - gcc-i686-linux-gnu
             - libc6-dev-i386-cross
             # TODO: make this conditional somehow
-            - gcc-armhf-linux-gnu
+            - gcc-arm-linux-gnueabihf
             - libc6-dev-armhf-cross
             # TODO: make this conditional somehow
             - gcc-aarch64-linux-gnu
