@@ -13,6 +13,21 @@ license: Apache-2.0
 grade: stable
 confinement: strict
 
+platforms:
+    i386:
+        build-on: [amd64]
+        build-for: [i386]
+    amd64:
+    armhf:
+        build-on: [amd64, armhf]
+        build-for: [armhf]
+    arm64:
+        build-on: [amd64, arm64]
+        build-for: [arm64]
+    riscv64:
+        build-on: [amd64, riscv64]
+        build-for: [riscv64]
+
 apps:
     mqctl:
         command: usr/bin/mqctl
@@ -70,6 +85,20 @@ slots:
 parts:
     mqctl:
         plugin: make
+        build-packages:
+            - gcc
+            # TODO: make this conditional somehow
+            - gcc-i686-linux-gnu
+            - libc6-dev-i386-cross
+            # TODO: make this conditional somehow
+            - gcc-armhf-linux-gnu
+            - libc6-dev-armhf-cross
+            # TODO: make this conditional somehow
+            - gcc-aarch64-linux-gnu
+            - libc6-dev-arm64-cross
+            # TODO: make this conditional somehow
+            - gcc-riscv64-linux-gnu
+            - libc6-dev-riscv64-cross
         make-parameters:
             - prefix=/usr
         source: .

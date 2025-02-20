@@ -15,6 +15,10 @@ CPPFLAGS ?=
 LDFLAGS ?=
 TARGET_ARCH ?=
 
+ifneq ($(value CRAFT_ARCH_TRIPLET_BUILD_FOR),)
+CC = $(subst i386,i686,$(value CRAFT_ARCH_TRIPLET_BUILD_FOR))-gcc
+endif
+
 mqctl: mq.o strlist.o errslot.o
 	$(LINK.o) $(OUTPUT_OPTION) $^
 mq.o: mq.c
