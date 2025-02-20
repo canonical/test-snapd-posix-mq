@@ -86,19 +86,21 @@ parts:
     mqctl:
         plugin: make
         build-packages:
-            - gcc
-            # TODO: make this conditional somehow
-            - gcc-i686-linux-gnu
-            - libc6-dev-i386-cross
-            # TODO: make this conditional somehow
-            - gcc-arm-linux-gnueabihf
-            - libc6-dev-armhf-cross
-            # TODO: make this conditional somehow
-            - gcc-aarch64-linux-gnu
-            - libc6-dev-arm64-cross
-            # TODO: make this conditional somehow
-            - gcc-riscv64-linux-gnu
-            - libc6-dev-riscv64-cross
+            - to i386:
+                  - gcc-i686-linux-gnu
+                  - libc6-dev-i386-cross
+            - to armhf:
+                  - gcc-arm-linux-gnueabihf
+                  - libc6-dev-armhf-cross
+            - to amd64:
+                  - gcc-x86-64-linux-gnu
+                  - libc6-dev-amd64-cross
+            - to arm64:
+                  - gcc-aarch64-linux-gnu
+                  - libc6-dev-arm64-cross
+            - to riscv64:
+                  - gcc-riscv64-linux-gnu
+                  - libc6-dev-riscv64-cross
         make-parameters:
             - prefix=/usr
         source: .
