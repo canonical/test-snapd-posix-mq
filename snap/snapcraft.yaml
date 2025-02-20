@@ -15,13 +15,13 @@ confinement: strict
 
 apps:
     mqctl:
-        command: /usr/bin/mqctl
+        command: usr/bin/mqctl
         plugs:
             - posix-mq
         slots: [] # Empty list
     superpower-mqctl:
         # This application exists so that we can scope slots to it, without affecting the mqctl app.
-        command: /usr/bin/mqctl
+        command: usr/bin/mqctl
         plugs: [] # Empty list
         slots:
             - can-create
