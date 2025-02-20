@@ -51,8 +51,9 @@ slots:
         # Grants ability to open POSIX message queue /test
         interface: posix-mq
         path: /test
-        permissions:
-            - open
+        # This is an empty list since snapd automatically adds "open" but the
+        # store incorrectly rejects it.
+        permissions: []
     can-read:
         # Grants ability to receive messages from POSIX message queue /test
         interface: posix-mq
