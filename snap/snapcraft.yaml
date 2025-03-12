@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Zygmunt Krynicki
 name: test-snapd-posix-mq
-base: core24
+base: core22
 version: "0.9"
 summary: Snap for testing the posix-mq snap interface
 description: |
@@ -13,20 +13,17 @@ license: Apache-2.0
 grade: stable
 confinement: strict
 
-platforms:
-    i386:
-        build-on: [amd64]
-        build-for: [i386]
-    amd64:
-    armhf:
-        build-on: [amd64, armhf]
-        build-for: [armhf]
-    arm64:
-        build-on: [amd64, arm64]
-        build-for: [arm64]
-    riscv64:
-        build-on: [amd64, riscv64]
-        build-for: [riscv64]
+architectures:
+    - build-on: [amd64, i386]
+      build-for: [i386]
+    - build-on: [amd64]
+      build-for: [amd64]
+    - build-on: [amd64, armhf]
+      build-for: [armhf]
+    - build-on: [amd64, arm64]
+      build-for: [arm64]
+    - build-on: [amd64, riscv64]
+      build-for: [riscv64]
 
 apps:
     mqctl:
